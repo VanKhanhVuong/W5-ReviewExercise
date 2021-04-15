@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum CORNER {
+enum Corner {
     case topLeftbottomLeft
     case topRightBottomRight
     case topLeft
@@ -15,22 +15,18 @@ enum CORNER {
     case defaultShow
 }
 extension UIButton {
-    func coradiusButton(corner: CORNER, degree: CGFloat) {
+    func coradiusButton(corner: Corner, degree: CGFloat) {
         self.clipsToBounds = true
         self.layer.cornerRadius = degree
         switch corner {
         case .topLeftbottomLeft:
             self.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-            break
         case .topRightBottomRight:
             self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-            break
         case .topLeft:
             self.layer.maskedCorners = .layerMinXMinYCorner
-            break
         case .topRight:
             self.layer.maskedCorners = .layerMaxXMinYCorner
-            break
         case .defaultShow:
             break
         }

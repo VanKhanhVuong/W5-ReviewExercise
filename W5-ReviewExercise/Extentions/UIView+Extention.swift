@@ -12,7 +12,7 @@ extension UIView {
         self.clipsToBounds = true
         self.layer.cornerRadius = CGFloat(degree)
         
-        if (border == true) {
+        if (border) {
             self.layer.borderWidth = 4.0
             self.layer.borderColor = UIColor.white.cgColor
         }

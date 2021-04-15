@@ -10,7 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var fruitListCollectionView: UICollectionView!
-    var listDisplayArray: [Fruit] = []
+    
     var data = [Fruit(image: #imageLiteral(resourceName: "dudu"), name: "Papaya", description: "Description of Papaya", price: 2.0, oldPrice: 3.1, rating: 4.5, starNumber: 5, voteNumber: 45, ingredientAray: ["Fragrant","Tasty"], saleText: ""),
                 Fruit(image: #imageLiteral(resourceName: "ot"), name: "Chili", description: "Description of Chili", price: 3.4, oldPrice: 5.3, rating: 5, starNumber: 5, voteNumber: 23, ingredientAray: ["Poignant","Bitter"], saleText: "SALE 12 %"),
                 Fruit(image: #imageLiteral(resourceName: "Dua"), name: "Coconut", description: "Description of Coconut", price: 4.0, oldPrice: 5.0, rating: 4, starNumber: 4, voteNumber: 20, ingredientAray: ["Sweet","Fragrant"], saleText: ""),
@@ -37,11 +37,13 @@ class HomeViewController: UIViewController {
     
     func registerCollectionView(){
         self.fruitListCollectionView.register(MyCollectionViewCell.nib, forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
-        self.fruitListCollectionView.delegate = self
-        self.fruitListCollectionView.dataSource = self
+        fruitListCollectionView.delegate = self
+        fruitListCollectionView.dataSource = self
+        
+        // Config layout
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        self.fruitListCollectionView.collectionViewLayout = layout
+        fruitListCollectionView.collectionViewLayout = layout
     }
 }
 

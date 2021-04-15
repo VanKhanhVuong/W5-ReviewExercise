@@ -71,6 +71,8 @@ class DetailViewController: UIViewController {
         tagCollectionView.register(TagCollectionViewCell.nib, forCellWithReuseIdentifier: TagCollectionViewCell.identifier)
         tagCollectionView.delegate = self
         tagCollectionView.dataSource = self
+        
+        // Config layout
         tagCollectionView.backgroundColor = UIColor.clear
     }
     
@@ -95,8 +97,8 @@ class DetailViewController: UIViewController {
         upButton.coradiusButton(corner: .topRightBottomRight, degree: 25)
         // Custom Corner Radius for UIView imageFruitView
         imageFruitView.customCornerRadiusView(degree: 30, border: true)
-        // Custom Corner Radius for UIView amountView
         
+        // Custom Corner Radius for UIView amountView
         amountView.layer.cornerRadius = 25
         amountView.layer.borderWidth = 3.0
         amountView.layer.borderColor = UIColor.white.cgColor
@@ -136,23 +138,20 @@ class DetailViewController: UIViewController {
     }
     
     func changeColorText(number: Int, myString: NSString, color: UIColor) -> NSMutableAttributedString{
-        var endNumber: Int = 0
-        var starNumber: Int = 0
-        var fontName: String = ""
-        var fontSize: CGFloat = 0.0
+        var star = Star(endNumber: 0, starNumber: 0, fontName: "", fontSize: 0.0)
         if (myString == "★★★★★") {
-            endNumber = number
-            fontName = "Georgia"
-            fontSize = 18.0
+            star.endNumber = number
+            star.fontName = "Georgia"
+            star.fontSize = 18.0
         } else {
-            starNumber = 10
-            endNumber = 6
-            fontName = "Gill Sans"
-            fontSize = 20.0
+            star.starNumber = 10
+            star.endNumber = 6
+            star.fontName = "Gill Sans"
+            star.fontSize = 20.0
         }
         var myMutableString = NSMutableAttributedString()
-        myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSAttributedString.Key.font:UIFont(name: fontName, size: fontSize)!])
-        myMutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: NSRange(location:starNumber,length:endNumber))
+        myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSAttributedString.Key.font:UIFont(name: star.fontName, size: CGFloat(star.fontSize))!])
+        myMutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: NSRange(location:star.starNumber,length: star.endNumber))
         return myMutableString
     }
 }
@@ -180,6 +179,7 @@ extension DetailViewController: UICollectionViewDataSource {
         cell?.tagView.backgroundColor = .white
     }
 }
+
 extension DetailViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.frame.width - 5) / 2, height: collectionView.frame.height)

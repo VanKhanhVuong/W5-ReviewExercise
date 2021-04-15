@@ -26,12 +26,21 @@ class MyCollectionViewCell: UICollectionViewCell {
         setUpView()
     }
     
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
+    static var nib: UINib{
+        return UINib(nibName: identifier, bundle: nil)
+    }
+    
     func setUpView() {
-            // Settings for oldPriceLabel to display underlined.
+        // Settings for oldPriceLabel to display underlined.
         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: " ")
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
         self.oldPriceLabel.attributedText = attributeString
-            // Custom Corner Radius for UIView and UIButton
+        
+        // Custom Corner Radius for UIView and UIButton
         self.itemView.customCornerRadiusView(degree: 12, border: false)
         self.heartView.customCornerRadiusView(degree: 12, border: false)
         self.saleView.customCornerRadiusView(degree: 12, border: false)
@@ -44,7 +53,7 @@ class MyCollectionViewCell: UICollectionViewCell {
         self.fruitImageView.image = fruit.image
         self.priceLabel.text = "$\(fruit.price)"
         self.oldPriceLabel.text = "$\(fruit.oldPrice)"
-        if fruit.saleText == "" {
+        if (fruit.saleText == "") {
             self.saleView.isHidden = true
         } else {
             self.saleView.isHidden = false
@@ -56,13 +65,4 @@ class MyCollectionViewCell: UICollectionViewCell {
             self.saleLabel.text = fruit.saleText
         }
     }
-    
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
-    static var nib: UINib{
-        return UINib(nibName: identifier, bundle: nil)
-    }
-    
 }
