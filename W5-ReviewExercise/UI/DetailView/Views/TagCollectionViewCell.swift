@@ -28,9 +28,9 @@ class TagCollectionViewCell: UICollectionViewCell {
         tagView.layer.cornerRadius = 20
         tagView.layer.borderWidth = 3.0
         tagView.layer.borderColor = UIColor.white.cgColor
-        tagView.layer.shadowRadius = 20
-        tagView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        tagView.layer.shadowOpacity = 0.3
+        tagView.layer.shadowRadius = 6
+        tagView.layer.shadowOffset = CGSize(width: 5, height: 5)
+        tagView.layer.shadowOpacity = 0.5
         tagView.layer.shadowColor = UIColor.gray.cgColor
     }
 }

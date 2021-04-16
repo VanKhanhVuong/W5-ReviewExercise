@@ -56,6 +56,7 @@ class DetailViewController: UIViewController {
             downButton.setTitleColor(.black, for: .normal)
         } else {
             amountLabel.text = amount
+            totalBillLabel.text = "$\(fruit.price * Float(amountLabel.text!)!)"
         }
     }
     
@@ -65,6 +66,7 @@ class DetailViewController: UIViewController {
             downButton.setTitleColor(.white, for: .normal)
         }
         amountLabel.text = "\(Int(amountLabel.text!)! + 1)"
+        totalBillLabel.text = "$\(fruit.price * Float(amountLabel.text!)!)"
     }
     
     func registerCollectionView(){
@@ -102,8 +104,8 @@ class DetailViewController: UIViewController {
         amountView.layer.cornerRadius = 25
         amountView.layer.borderWidth = 3.0
         amountView.layer.borderColor = UIColor.white.cgColor
-        amountView.layer.shadowRadius = 25
-        amountView.layer.shadowOffset = CGSize(width: 20, height: 20)
+        amountView.layer.shadowRadius = 5
+        amountView.layer.shadowOffset = CGSize(width: 5, height: 5)
         amountView.layer.shadowOpacity = 0.5
         amountView.layer.shadowColor = UIColor.black.cgColor
         
@@ -111,8 +113,8 @@ class DetailViewController: UIViewController {
         totalBillView.layer.cornerRadius = 20
         totalBillView.layer.borderWidth = 3.0
         totalBillView.layer.borderColor = UIColor.white.cgColor
-        totalBillView.layer.shadowRadius = 20
-        totalBillView.layer.shadowOffset = CGSize(width: 20, height: 20)
+        totalBillView.layer.shadowRadius = 5
+        totalBillView.layer.shadowOffset = CGSize(width: 5, height: 5)
         totalBillView.layer.shadowOpacity = 0.5
         totalBillView.layer.shadowColor = UIColor.black.cgColor
         
@@ -120,7 +122,7 @@ class DetailViewController: UIViewController {
         nameItemView.layer.cornerRadius = 20
         nameItemView.layer.borderWidth = 3.0
         nameItemView.layer.borderColor = UIColor.white.cgColor
-        nameItemView.layer.shadowRadius = 20
+        nameItemView.layer.shadowRadius = 5
         nameItemView.layer.shadowOffset = CGSize(width: 5, height: 5)
         nameItemView.layer.shadowOpacity = 0.5
         nameItemView.layer.shadowColor = UIColor.black.cgColor
