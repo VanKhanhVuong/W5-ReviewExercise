@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    func customCornerRadiusView(degree: Int, border: Bool)  {
+    func customCornerRadius(degree: Int, border: Bool)  {
         self.clipsToBounds = true
         self.layer.cornerRadius = CGFloat(degree)
         

@@ -15,7 +15,7 @@ enum Corner {
     case defaultShow
 }
 extension UIButton {
-    func coradiusButton(corner: Corner, degree: CGFloat) {
+    func customCornerRadius(corner: Corner, degree: CGFloat) {
         self.clipsToBounds = true
         self.layer.cornerRadius = degree
         switch corner {

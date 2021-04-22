@@ -12,11 +12,4 @@ struct Star {
     var starNumber: Int
     var fontName: String
     var fontSize: Float
-    
-    init(endNumber : Int, starNumber: Int, fontName: String, fontSize: Float) {
-        self.endNumber = endNumber
-        self.starNumber = starNumber
-        self.fontName = fontName
-        self.fontSize = fontSize
-    }
 }

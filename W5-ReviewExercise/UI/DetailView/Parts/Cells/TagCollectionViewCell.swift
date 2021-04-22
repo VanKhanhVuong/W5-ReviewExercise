@@ -13,7 +13,7 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUpTagView()
+        tagView.customShadowAndRadius(degree: 20, width: 5, height: 5)
     }
     
     static var identifier: String {
@@ -22,15 +22,5 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     static var nib: UINib{
         return UINib(nibName: identifier, bundle: nil)
-    }
-    
-    func setUpTagView() {
-        tagView.layer.cornerRadius = 20
-        tagView.layer.borderWidth = 3.0
-        tagView.layer.borderColor = UIColor.white.cgColor
-        tagView.layer.shadowRadius = 6
-        tagView.layer.shadowOffset = CGSize(width: 5, height: 5)
-        tagView.layer.shadowOpacity = 0.5
-        tagView.layer.shadowColor = UIColor.gray.cgColor
     }
 }

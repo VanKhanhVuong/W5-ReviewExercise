@@ -27,16 +27,16 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var downView: UIView!
     @IBOutlet weak var upView: UIView!
     @IBOutlet weak var tagCollectionView: UICollectionView!
-    @IBOutlet var parentView: UIView!
     @IBOutlet weak var amountLabel: UILabel!
-    
     let gradientLayer = CAGradientLayer()
-    var fruit = Fruit(image: #imageLiteral(resourceName: "empty"), name: "", description: "", price: 0.0, oldPrice: 0.0, rating: 0.0, starNumber: 0, voteNumber: 0, ingredientAray: [""], saleText: "")
+    
+    var fruit = Fruit(image: #imageLiteral(resourceName: "empty"), name: "", description: "", saleText: "", price: 0.0, oldPrice: 0.0, rating: 0.0, starNumber: 0, voteNumber: 0, ingredientArray: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         registerCollectionView()
+        showFruitInfo()
     }
     
     override func viewWillLayoutSubviews() {
@@ -90,43 +90,24 @@ class DetailViewController: UIViewController {
     func setUpView() {
         setUpgradientLayer()
         // Custom Corner Radius for UIView downView
-        downView.customCornerRadiusView(degree: 10, border: false)
+        downView.customCornerRadius(degree: 10, border: false)
         // Custom Corner Radius for UIView upView
-        upView.customCornerRadiusView(degree: 10, border: false)
+        upView.customCornerRadius(degree: 10, border: false)
         // Custom Corner Radius for UIButton downButton
-        downButton.coradiusButton(corner: .topLeftbottomLeft, degree: 25)
+        downButton.customCornerRadius(corner: .topLeftbottomLeft, degree: 25)
         // Custom Corner Radius for UIButton upButton
-        upButton.coradiusButton(corner: .topRightBottomRight, degree: 25)
+        upButton.customCornerRadius(corner: .topRightBottomRight, degree: 25)
         // Custom Corner Radius for UIView imageFruitView
-        imageFruitView.customCornerRadiusView(degree: 30, border: true)
-        
+        imageFruitView.customCornerRadius(degree: 30, border: true)
         // Custom Corner Radius for UIView amountView
-        amountView.layer.cornerRadius = 25
-        amountView.layer.borderWidth = 3.0
-        amountView.layer.borderColor = UIColor.white.cgColor
-        amountView.layer.shadowRadius = 5
-        amountView.layer.shadowOffset = CGSize(width: 5, height: 5)
-        amountView.layer.shadowOpacity = 0.5
-        amountView.layer.shadowColor = UIColor.black.cgColor
-        
+        amountView.customShadowAndRadius(degree: 25, width: 5, height: 5)
         // Custom Corner Radius for UIView totalBillView
-        totalBillView.layer.cornerRadius = 20
-        totalBillView.layer.borderWidth = 3.0
-        totalBillView.layer.borderColor = UIColor.white.cgColor
-        totalBillView.layer.shadowRadius = 5
-        totalBillView.layer.shadowOffset = CGSize(width: 5, height: 5)
-        totalBillView.layer.shadowOpacity = 0.5
-        totalBillView.layer.shadowColor = UIColor.black.cgColor
-        
+        totalBillView.customShadowAndRadius(degree: 20, width: 5, height: 5)
         // Custom Corner Radius for UIView nameItemView
-        nameItemView.layer.cornerRadius = 20
-        nameItemView.layer.borderWidth = 3.0
-        nameItemView.layer.borderColor = UIColor.white.cgColor
-        nameItemView.layer.shadowRadius = 5
-        nameItemView.layer.shadowOffset = CGSize(width: 5, height: 5)
-        nameItemView.layer.shadowOpacity = 0.5
-        nameItemView.layer.shadowColor = UIColor.black.cgColor
-        
+        nameItemView.customShadowAndRadius(degree: 20, width: 5, height: 5)
+    }
+    
+    func showFruitInfo() {
         // Pour fruit data into the UIs
         fruitImageView.image = fruit.image
         nameFruitLabel.text = fruit.name
@@ -166,8 +147,7 @@ extension DetailViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier,
-                                                      for: indexPath) as! TagCollectionViewCell
+        guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier,for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
         item.tagTextLabel.text = self.fruit.ingredientArray[indexPath.item]
         return item
     }
